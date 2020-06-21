@@ -22,7 +22,11 @@ export const HomeStoreModel = types
         const data = yield api.getCountryDetail(countryName)
         if (data.kind === "ok") {
           const response = data.countryData
-          self.countryData = response[1]
+          for (let index = 0; index < response.length; index++) {
+            if (response[index].name === countryName) {
+              self.countryData = response[index]
+            }
+          }
         } else {
           self.countryData = null
           // showAlert("common.somethingWrong");

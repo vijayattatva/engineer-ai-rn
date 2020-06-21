@@ -80,7 +80,7 @@ const HINT: TextStyle = {
 export const HomeScreen: Component = observer(function HomeScreen() {
   const navigation = useNavigation()
   const { homeStore } = useStores()
-  const [country, setCountry] = useState("India")
+  const [country, setCountry] = useState("")
   const [isValidText, onValidText] = useState(false)
   const [isLoading, onLoading] = useState(false)
 

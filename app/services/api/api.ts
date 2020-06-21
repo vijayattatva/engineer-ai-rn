@@ -116,7 +116,7 @@ export class Api {
       return { kind: "bad-data" }
     }
   }
-  async getWeatherDetail(countryName: string): Promise<Types.CountryResult> {
+  async getWeatherDetail(countryName: string): Promise<Types.WeatherResult> {
     const response: ApiResponse<any> = await this.apisauce.get(
       "http://api.weatherstack.com/current?access_key=e898326052c658760d7b253b7a8ac288&query=" + countryName,
     )
@@ -127,7 +127,7 @@ export class Api {
     try {
       const data = response.data
       console.log(data)
-      return { kind: "ok", countryData: data }
+      return { kind: "ok", weatherData: data }
     } catch {
       return { kind: "bad-data" }
     }

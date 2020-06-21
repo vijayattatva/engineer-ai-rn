@@ -35,7 +35,7 @@
     "flag": "Country Flag",
     "weatherInfo": "Weather Info",
     "temp": "Temperature",
-    "wind": "Wind",
+    "wind": "Wind Speed",
     "precip": "Precip"
   }
 }

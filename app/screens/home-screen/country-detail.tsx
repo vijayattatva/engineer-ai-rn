@@ -5,6 +5,7 @@ import { observer } from "mobx-react-lite"
 import { BulletItem, Button, Header, Text, Screen, Wallpaper } from "../../components"
 import { color, spacing } from "../../theme"
 import { useStores } from "../../models"
+import { SvgUri } from "react-native-svg"
 
 const FULL: ViewStyle = { flex: 1, justifyContent: "center" }
 const CONTAINER: ViewStyle = {
@@ -124,22 +125,25 @@ export const CountryDetail: Component = observer(function CountryDetail() {
           {renderRows("home.capital", countryData.capital)}
           {renderRows("home.population", countryData.population)}
           {renderRows("home.latlng", countryData.latlng[0] + ", " + countryData.latlng[1])}
-          {weatherData && (
-            <View>
-              <Text style={LABEL} preset={"bold"} tx={"home.weatherInfo"} />
-              {renderRows("home.temp", weatherData.current.temperature)}
-              {renderRows("home.wind", countryData.current.wind_speed)}
-              {renderRows("home.precip", countryData.current.precip)}
-            </View>
-          )}
           <View style={ROW}>
             <Text style={LABEL} preset={"bold"} tx={"home.flag"} />
-            <Image
-              resizeMode={"contain"}
-              style={{ height: 30, width: 30 }}
-              source={{ uri: countryData.flag }}
-            />
+     <View style={{flex:1}}>
+     <SvgUri width={50} height={50} uri={countryData.flag} />
+     </View>
           </View>
+          {weatherData && (
+            <View style={{ marginTop: 20 }}>
+              <Text preset={"default"} tx={"home.weatherInfo"} />
+              {renderRows("home.temp", weatherData.current.temperature)}
+              {renderRows("home.wind", weatherData.current.wind_speed)}
+              {renderRows("home.precip", weatherData.current.precip)}
+              <Image
+                resizeMode={"contain"}
+                style={{ height: 50, width: 50, marginTop: 15 }}
+                source={{ uri: weatherData.current.weather_icons[0] }}
+              />
+            </View>
+          )}
           <Button
             style={DEMO}
             isLoading={isLoading}
